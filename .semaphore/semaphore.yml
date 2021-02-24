@@ -21,12 +21,11 @@ blocks:
             - cache store
   - name: Tests
     task:
-      jobs: []
-    prologue:
-      commands:
-        - cache restore
-        - nvm use
-        - cache store
+    	prologue:
+      	commands:
+        	- cache restore
+        	- nvm use
+        	- cache store
       jobs:
         - name: Linting
           commands:
@@ -34,3 +33,5 @@ blocks:
         - name: Unit testing
           commands:
             - npm run test
+   
+      
