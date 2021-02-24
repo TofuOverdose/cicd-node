@@ -29,6 +29,6 @@ blocks:
             - npm run test
       prologue:
         commands:
-          - '- checkout'
-          - '- nvm use'
-          - '- cache restore'
+          - checkout
+          - nvm use
+          - cache restore
