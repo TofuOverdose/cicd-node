@@ -6,12 +6,13 @@ agent:
     os_image: ubuntu1804
 blocks:
   - name: Install dependencies
+    task:
+      jobs: []
     prologue:
       commands:
         - checkout
         - nvm use
         - cache store
-    task:
       jobs:
         - name: npm install and cache
           commands:
@@ -19,12 +20,13 @@ blocks:
             - npm install
             - cache store
   - name: Tests
+    task:
+      jobs: []
     prologue:
       commands:
         - cache restore
         - nvm use
         - cache store
-    task:
       jobs:
         - name: Linting
           commands:
