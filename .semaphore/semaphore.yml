@@ -7,18 +7,17 @@ agent:
 blocks:
   - name: Install dependencies
     task:
-      jobs: []
-    jobs:
-      - name: npm install and cache
+      jobs:
+        - name: npm install and cache
+          commands:
+            - cache restore
+            - npm install
+            - cache store
+      prologue:
         commands:
-          - cache restore
-          - npm install
+          - checkout
+          - nvm use
           - cache store
-    prologue:
-      commands:
-        - checkout
-        - nvm use
-        - cache store
   - name: Tests
     task:
       jobs:
