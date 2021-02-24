@@ -8,24 +8,19 @@ blocks:
   - name: Install dependencies
     task:
       jobs: []
+    jobs:
+      - name: npm install and cache
+        commands:
+          - cache restore
+          - npm install
+          - cache store
     prologue:
       commands:
         - checkout
         - nvm use
         - cache store
-      jobs:
-        - name: npm install and cache
-          commands:
-            - cache restore
-            - npm install
-            - cache store
   - name: Tests
     task:
-    	prologue:
-      	commands:
-        	- cache restore
-        	- nvm use
-        	- cache store
       jobs:
         - name: Linting
           commands:
@@ -33,5 +28,3 @@ blocks:
         - name: Unit testing
           commands:
             - npm run test
-   
-      
