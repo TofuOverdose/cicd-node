@@ -17,4 +17,5 @@ blocks:
         - name: Docker build
           commands:
             - 'docker pull "${DOCKERHUB_USERNAME}/coffee-shop:latest"'
-            - 'docker build --cache-from "${DOCKERHUB_USERNAME}/coffee-shop:latest" -t "${DOCKERHUB_USERNAME}/coffe-shop:${SEMAPHORE_WORKFLOW_ID}" .'
+            - 'docker build --cache-from "${DOCKERHUB_USERNAME}/coffee-shop:latest" -t "${DOCKERHUB_USERNAME}/coffee-shop:${SEMAPHORE_WORKFLOW_ID}" .'
+            - 'docker push "${DOCKERHUB_USERNAME}/coffee-shop:${SEMAPHORE_WORKFLOW_ID}"'
