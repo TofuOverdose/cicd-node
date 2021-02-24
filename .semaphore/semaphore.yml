@@ -27,3 +27,8 @@ blocks:
         - name: Unit testing
           commands:
             - npm run test
+      prologue:
+        commands:
+          - checkout
+          - nvm use
+          - cache restore
