@@ -1,0 +1,7 @@
+START TRANSACTION;
+
+DROP TABLE IF EXISTS coffee_shop.orders;
+
+DROP TABLE IF EXISTS coffee_shop.menu;
+
+COMMIT;
