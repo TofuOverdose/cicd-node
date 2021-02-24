@@ -1,12 +1,9 @@
 version: v1.0
-
 name: CoffeeShop
-
 agent:
-  machine: 
+  machine:
     type: e1-standard-2
-    os_type: ubuntu1804
-
+    os_image: ubuntu1804
 blocks:
   - name: Install dependencies
     prologue:
@@ -20,6 +17,8 @@ blocks:
           - cache restore
           - npm install
           - cache store
+    task:
+      jobs: []
   - name: Tests
     prologue:
       commands:
@@ -33,4 +32,5 @@ blocks:
       - name: Unit testing
         commands:
           - npm run test
-    
+    task:
+      jobs: []
