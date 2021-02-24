@@ -1,0 +1,20 @@
+version: v1.0
+name: Docker build
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Build
+    task:
+      secrets:
+        - name: Dockerhub Access
+      prologue:
+        commands:
+          - checkout
+          - echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+      jobs:
+        - name: Docker build
+          commands:
+            - docker pull "${DOCKERHUB_USERNAME}/coffee-shop:latest"
+            - docker build --cache-from "${DOCKERHUB_USERNAME/coffee-shop:latest" -t "${DOCKERHUB_USERNAME}/coffe-shop:${SEMAPHORE_WORKFLOW_ID}"

@@ -32,3 +32,8 @@ blocks:
           - checkout
           - nvm use
           - cache restore
+promotions:
+  - name: Dockerize
+    pipeline-file: docker-build.yml
+    auto_promote_on:
+      - result: passed
