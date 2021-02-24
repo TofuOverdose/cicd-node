@@ -1,0 +1,36 @@
+version: 1.0
+
+name: CoffeeShop
+
+agent:
+  machine: 
+    type: e1-standard-2
+    os_type: ubuntu1804
+
+blocks:
+  - name: Install dependencies
+    prologue:
+      commands:
+        - checkout
+        - nvm use
+        - cache store
+    jobs:
+      - name: npm install and cache
+        commands:
+          - cache restore
+          - npm install
+          - cache store
+  - name: Tests
+    prologue:
+      commands:
+        - cache restore
+        - nvm use
+        - cache store
+    jobs:
+      - name: Linting
+        commands:
+          - npm run lint
+      - name: Unit testing
+        commands:
+          - npm run test
+    
