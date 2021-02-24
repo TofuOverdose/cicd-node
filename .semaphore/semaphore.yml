@@ -11,26 +11,24 @@ blocks:
         - checkout
         - nvm use
         - cache store
-    jobs:
-      - name: npm install and cache
-        commands:
-          - cache restore
-          - npm install
-          - cache store
     task:
-      jobs: []
+      jobs:
+        - name: npm install and cache
+          commands:
+            - cache restore
+            - npm install
+            - cache store
   - name: Tests
     prologue:
       commands:
         - cache restore
         - nvm use
         - cache store
-    jobs:
-      - name: Linting
-        commands:
-          - npm run lint
-      - name: Unit testing
-        commands:
-          - npm run test
     task:
-      jobs: []
+      jobs:
+        - name: Linting
+          commands:
+            - npm run lint
+        - name: Unit testing
+          commands:
+            - npm run test
