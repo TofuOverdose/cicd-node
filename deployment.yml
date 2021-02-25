@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-shop
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: coffee-shop
+  template:
+    metadata:
+      labels:
+        app: coffee-shop
+    spec:
+      containers:
+        - name: coffee-shop-api
+          image: '${DOCKERHUB_USERNAME}/coffee-shop:${SEMAPHORE_WORKFLOW_ID}'
+          env:
+            - name: CF_APP_ENV
+              value: "$CF_APP_ENV"
+            - name: CF_APP_PORT
+              value: "$CF_APP_PORT"
+            - name: CF_DB_HOST
+              value: "$CF_DB_HOST"
+            - name: CF_DB_PORT
+              value: "$CF_DB_PORT"
+            - name: CF_DB_NAME
+              value: "$CF_DB_NAME"
+            - name: CF_DB_USER
+              value: "$CF_DB_USER"
+            - name: CF_DB_PASS
+              value: "$CF_DB_PASS"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-shop-load-balancer
+spec:
+  selector:
+    app: coffee-shop
+  type: LoadBalancer
+  ports: 
+    - port: 80
+      targetPort: "$CF_APP_PORT"
