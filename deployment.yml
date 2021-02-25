@@ -12,6 +12,8 @@ spec:
       labels:
         app: coffee-shop
     spec:
+      imagePullSecrets:
+        - name: coffee-shop-docker-secret
       containers:
         - name: coffee-shop-api
           image: '${DOCKERHUB_USERNAME}/coffee-shop:${SEMAPHORE_WORKFLOW_ID}'
