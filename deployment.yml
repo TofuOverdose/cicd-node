@@ -42,4 +42,4 @@ spec:
   type: LoadBalancer
   ports: 
     - port: 80
-      targetPort: "$CF_APP_PORT"
+      targetPort: $CF_APP_PORT
