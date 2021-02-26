@@ -16,7 +16,7 @@
     "dotenv": "^8.2.0",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",
-    "mysql": "^2.18.1"
+    "mysql2": "^2.2.5"
   },
   "devDependencies": {
     "eslint": "^7.20.0",

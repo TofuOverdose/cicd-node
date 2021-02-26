@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const config = require('../../../config');
 
 const pool = mysql.createPool({
@@ -20,7 +20,7 @@ function createOrder({clientEmail, itemId, quantity}) {
             }
 
             getOrderById(results.insertId)
-                .then(results => resolve(results[0]))
+                .then(result => resolve(result))
                 .catch(err => reject(err));
         });
     });
