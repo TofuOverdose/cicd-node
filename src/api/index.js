@@ -89,7 +89,7 @@ router.get('/credits', async({request, response}) => {
 
 router.get('/ping', async({response}) => {
     response.code = 204;
-    response.body = 'pong';
+    response.body = 'foobar';
 });
 
 const app = new Koa();
