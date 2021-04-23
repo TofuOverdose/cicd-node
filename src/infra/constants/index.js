@@ -1,0 +1,15 @@
+const DATABASE_TYPE = {
+    MYSQL: 'DATABASE_TYPE-MYSQL',
+    INMEM: 'DATABASE_TYPE-INMEM',
+    MONGO: 'DATABASE_TYPE-MONGO',
+};
+
+const RUN_MODE = {
+    RELP: 'RUN_MODE-REPL',
+    HTTP: 'RUN_MODE-HTTP',
+};
+
+module.exports = {
+    DATABASE_TYPE,
+    RUN_MODE,
+};

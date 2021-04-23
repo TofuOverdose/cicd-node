@@ -1,9 +1,15 @@
-const config = require('./config');
-const app = require('./src/api');
+const bootstrap = require('./src/infra/bootstrap');
 
-const env = config('app.env');
-const port = config('app.port');
+(async function main() {
+    await bootstrap();
 
-app.listen(port, () => {
-    console.log(`Started ${env} server on port ${port}`);
-});
+    if (process.argv.findIndex(x => x === '--repl') > 0) {
+        console.log('Loading REPL server');
+        const replServer = require('./src/interfaces/menu-repl/server');
+        replServer.start();
+    } else {
+        console.log('Loading HTTP server');
+        const httpServer = require('./src/interfaces/http/server');
+        httpServer.start();
+    }
+})();

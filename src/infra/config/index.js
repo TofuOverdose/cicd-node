@@ -1,6 +1,3 @@
-const Env = require('dotenv');
-Env.config();
-
 const prefix = 'CF_';
 
 module.exports = function(key, fallback) {
